@@ -1,0 +1,34 @@
+{
+  "title": "ZJ05 MTD analysis package",
+  "description": "R code, processed analysis inputs, archived Bacon chronology model, and reproducible outputs for the 236 ka ZJ05 mass-transport-deposit analysis.",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "access_right": "open",
+  "license": "other-closed",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Guo, Ruibo",
+      "affiliation": "Guangzhou Marine Geological Survey, China Geological Survey; Key Laboratory of Marine Mineral Resources, Ministry of Natural Resources"
+    },
+    {
+      "name": "Jiang, Yuhan",
+      "affiliation": "Guangzhou Marine Geological Survey, China Geological Survey; Key Laboratory of Marine Mineral Resources, Ministry of Natural Resources"
+    },
+    {
+      "name": "Kuang, Zenggui",
+      "affiliation": "Guangzhou Marine Geological Survey, China Geological Survey; Key Laboratory of Marine Mineral Resources, Ministry of Natural Resources"
+    },
+    {
+      "name": "Deng, Wei",
+      "affiliation": "Guangzhou Marine Geological Survey, China Geological Survey; Key Laboratory of Marine Mineral Resources, Ministry of Natural Resources"
+    }
+  ],
+  "keywords": [
+    "mass-transport deposits",
+    "Bacon chronology",
+    "relative sea level",
+    "East Asian summer monsoon",
+    "South China Sea"
+  ]
+}
