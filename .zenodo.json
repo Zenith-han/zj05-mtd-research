@@ -2,7 +2,7 @@
   "title": "ZJ05 MTD analysis package",
   "description": "R code, processed analysis inputs, archived Bacon chronology model, and reproducible outputs for the 236 ka ZJ05 mass-transport-deposit analysis.",
   "upload_type": "software",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "access_right": "open",
   "license": "other-closed",
   "language": "eng",
