@@ -1,0 +1,15 @@
+"summary_level","summary_id","member_events","event_count","window_rule","aggregation_rule","mean_cm_per_kyr","q2.5_cm_per_kyr","median_cm_per_kyr","q97.5_cm_per_kyr","n_draws_used"
+"event","MTD1","MTD1",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",62.5294140498518,42.4825721462401,62.3343924777654,83.4235760240258,18000
+"event","MTD2","MTD2",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",62.3332164193684,44.7149469284902,62.0946056065641,81.1884510062257,18000
+"event","MTD3","MTD3",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",49.6857221659902,32.5420103749785,48.8642840966711,71.4000596919225,18000
+"event","MTD4","MTD4",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",42.9447911829092,27.7692556795882,42.6705934381253,59.9022881306799,18000
+"event","MTD5","MTD5",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",43.6350836933549,28.2776042680656,43.4066269174768,60.3680607566353,18000
+"event","MTD6","MTD6",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",43.081486471906,27.2139914750025,42.8647124363504,60.3444224525607,18000
+"event","MTD7","MTD7",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",42.560085378072,27.0863326650002,42.2950133653239,59.7891219724319,18000
+"event","MTD8","MTD8",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",30.3613687316188,17.1662105324427,29.9758491282007,46.240719173848,18000
+"event","MTD9","MTD9",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",25.1354835311312,13.8899287295033,24.6912805144018,39.0513863927252,18000
+"event","MTD10","MTD10",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",20.2962609430261,10.4065167894601,20.046754142801,31.9174864966207,18000
+"event","MTD11","MTD11",1,"10-kyr bins; left-closed/right-open","same-row event age and Bacon-curve rate",20.1794995491029,10.1959893491581,19.8776717311144,31.6637653617329,18000
+"group","MTD1-MTD3","MTD1,MTD2,MTD3",3,"10-kyr bins; left-closed/right-open","equal-weight arithmetic mean within posterior iteration",58.1827842117368,47.1777672081426,57.6086848899768,71.4568537197715,18000
+"group","MTD4-MTD7","MTD4,MTD5,MTD6,MTD7",4,"10-kyr bins; left-closed/right-open","equal-weight arithmetic mean within posterior iteration",43.0553616815605,32.027267116238,42.5848371430953,57.2315016777764,18000
+"group","MTD8-MTD11","MTD8,MTD9,MTD10,MTD11",4,"10-kyr bins; left-closed/right-open","equal-weight arithmetic mean within posterior iteration",23.9931531887198,18.633726392479,23.7482898594408,30.8486082523111,18000
