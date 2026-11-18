@@ -8,7 +8,6 @@ script_dir <- function() {
 source(file.path(script_dir(), "bacon_helpers.R"))
 source(file.path(script_dir(), "bacon_model_config.R"))
 source(file.path(script_dir(), "analysis_config.R"))
-require_bacon()
 
 info_file <- getOption("zj05.bacon_model_file", NULL)
 if (is.null(info_file)) {
@@ -85,4 +84,4 @@ validation$max_abs_difference_year <- apply(abs(cbind(
 if (max(validation$max_abs_difference_year) > 2) {
   stop("Direct posterior summaries differ from Bacon's official rounded summary by >2 years.")
 }
-message("Wrote 18,000 complete event-age sets from the retained Bacon model iterations.")
+message("Wrote 72,000 complete event-age sets from the retained Bacon model iterations.")

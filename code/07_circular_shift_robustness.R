@@ -15,7 +15,7 @@ vars <- c(
 )
 env <- read_result_csv_required("categorized_timeseries.csv")
 env <- env[order(env$age_ka), ]
-cell_duration_ka <- grid_exposure_weights(env$age_ka, 0, 236)
+cell_duration_ka <- grid_exposure_weights(env$age_ka, 0, 237)
 total_time_ka <- sum(cell_duration_ka)
 posterior <- read_result_csv_required(file.path(
   "bacon", "event_age_posterior_draws_wide.csv"

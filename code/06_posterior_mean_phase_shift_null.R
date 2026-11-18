@@ -22,7 +22,7 @@ if (!all(c("age_ka", vars) %in% names(env))) {
 if (nrow(env) != length(analysis_grid_ka) ||
     abs(min(env$age_ka) - analysis_config$analysis_start_ka) > 1e-12 ||
     abs(max(env$age_ka) - analysis_config$analysis_end_ka) > 1e-12) {
-  stop("Environmental grid is not the required 0-236 ka, 0.2-ka grid.")
+  stop("Environmental grid is not the required 0-237 ka, 0.2-ka grid.")
 }
 weights <- grid_exposure_weights(
   env$age_ka,
@@ -180,9 +180,9 @@ phase_steps <- 0:as.integer(round(
   (analysis_config$analysis_end_ka - analysis_config$analysis_start_ka) / analysis_config$step_ka
 ) - 1L)
 shift_values_ka <- phase_steps * analysis_config$step_ka
-if (length(shift_values_ka) != 1180L || shift_values_ka[1] != 0 ||
-    abs(tail(shift_values_ka, 1) - 235.8) > 1e-12) {
-  stop("Exact phase grid is not 0, 0.2, ..., 235.8 ka.")
+if (length(shift_values_ka) != 1185L || shift_values_ka[1] != 0 ||
+    abs(tail(shift_values_ka, 1) - 236.8) > 1e-12) {
+  stop("Exact phase grid is not 0, 0.2, ..., 236.8 ka.")
 }
 
 message("Running posterior-mean exact circular-shift null over ", length(shift_values_ka), " phases.")

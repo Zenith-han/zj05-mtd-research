@@ -23,7 +23,7 @@ if (!all(required %in% names(raw_env))) {
 raw_env <- raw_env[order(raw_env$age_ka), ]
 if (min(raw_env$age_ka, na.rm = TRUE) > analysis_config$analysis_start_ka ||
     max(raw_env$age_ka, na.rm = TRUE) < analysis_config$analysis_end_ka) {
-  stop("Environment input does not span the configured 0-236 ka interval.")
+  stop("Environment input does not span the configured 0-237 ka interval.")
 }
 
 grid <- data.frame(age_ka = analysis_grid_ka)
@@ -78,6 +78,6 @@ vars <- c(
   "RSL_State", "RSL_Variability", "RSL_RateofChange",
   "EASM_Intensity", "EASM_Variability", "EASM_RateofChange"
 )
-if (anyNA(grid[, vars])) stop("The 0-236 ka environmental classification contains NA values.")
+if (anyNA(grid[, vars])) stop("The 0-237 ka environmental classification contains NA values.")
 
 write_result_csv(grid, "categorized_timeseries.csv")

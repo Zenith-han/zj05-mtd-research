@@ -25,9 +25,10 @@ require_bacon <- function() {
     stop("The rbacon package is required.")
   }
   version <- as.character(utils::packageVersion("rbacon"))
-  if (version != "3.5.2") stop("Expected rbacon 3.5.2; found ", version)
+  message("Using rbacon ", version, " to build a new chronology.")
+  version
 }
-require_bacon()
+rbacon_version <- require_bacon()
 
 bacon_params <- bacon_model_config
 
@@ -75,6 +76,7 @@ info <- rbacon::Bacon(
   burnin = bacon_params$burnin,
   seed = bacon_params$seed,
   normal = bacon_params$normal,
+  cc2 = bacon_params$cc2,
   suggest = FALSE,
   ask = FALSE,
   run = TRUE,
@@ -87,4 +89,15 @@ info <- rbacon::Bacon(
 info <- normalize_bacon_model_output(info)
 assert_bacon_model_configuration(info)
 saveRDS(info, rebuilt_model_file)
-message("Wrote Bacon chronology model build outputs to ", core_dir)
+writeLines(
+  c(
+    "Bacon build environment",
+    paste0("R version: ", R.version.string),
+    paste0("rbacon version: ", rbacon_version),
+    "",
+    capture.output(utils::sessionInfo())
+  ),
+  file.path(core_dir, "build_environment.txt"),
+  useBytes = TRUE
+)
+message("Wrote Bacon chronology model build outputs and environment metadata to ", core_dir)

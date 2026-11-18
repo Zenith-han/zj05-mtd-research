@@ -1,45 +1,34 @@
 # ZJ05 MTD analysis package
 
-This package contains the R code, inputs and results for the 236 ka ZJ05 MTD
-analysis.
+Version 1.0.2 accompanies *Submarine landslide deposits concentrate at intermediate sea levels on a monsoon-influenced margin*. The analysis covers 11 mass-transport deposits (MTDs) in core ZJ05 over the past 237 kyr.
 
-## Requirements
+## Reproduce the published results
 
-- R 4.5.1
-- rbacon 3.5.2
+Download or clone the repository. From the package root, run the following command.
 
-Install rbacon if needed:
-
-```r
-install.packages("rbacon")
+```sh
+Rscript --vanilla code/run_all.R --model-source=archived
 ```
 
-## Run
+The archived workflow uses base R and reads the compressed model directly. It writes 17 CSV files under `results/`, including the eight summary tables distributed here. The other nine files contain the age–depth curve, 10-kyr sedimentation rates, the classified environmental series, posterior draws and shift-level results.
 
-Run commands from the package root. The default analysis uses
-`data/processed/bacon_model.rds` and writes 17 CSV files under `results/`:
+## Inputs and methods
 
-```r
-source("code/run_all.R")
-```
+| Input | Contents |
+| --- | --- |
+| `data/age_control.csv` | 31 age controls. Depth is in centimetres on the event-free depth scale. Ages, errors and reservoir corrections are in years. The ten AMS radiocarbon ages use Marine20 with a regional correction of −149 ± 40 years. |
+| `data/mtd_events.csv` | Event identifiers, top and base depths in metres below seafloor, and event-free depths in centimetres. |
+| `data/environment_proxy_metrics.csv` | Relative sea-level proxy (RSL), East Asian summer monsoon index (EASM-PC1) and their rates of change on a 0.2-kyr grid. |
+| `data/processed/bacon_model.rds` | Archived Bacon chronology with 72,000 posterior age–depth curves. The model was fitted with R 4.5.3 and rbacon 3.5.2, using seed 20264622 and a normal measurement-error likelihood. |
 
-| Task | Command | Output |
-|---|---|---|
-| Run the archived model explicitly | `Rscript code/run_all.R --model-source=archived` | `results/` |
-| Build a new Bacon model only | `Rscript code/run_all.R --build-bacon-model` | `results/rebuilt_runs/<run-id>/` |
-| Build a new model and run the analysis | `Rscript code/run_all.R --build-bacon-model --model-source=rebuilt` | `results/rebuilt_runs/<run-id>/` |
-| Rerun an existing rebuilt model | `Rscript code/run_all.R --model-source=rebuilt --run-id=<id>` | `results/rebuilt_runs/<id>/` |
+The RSL proxy follows Spratt and Lisiecki (2016). EASM-PC1 combines the loess grain-size record of Yang and Ding (2014), the magnetic-susceptibility record of Sun et al. (2006) and the sign-adjusted speleothem oxygen-isotope record of Cheng et al. (2016). These sources are cited in the article. The input table supplies the continuous proxy series and their rates in metres per kyr (RSL) or index units per kyr (EASM). Rates use the difference between the younger and older proxy values 0.6 kyr on either side of each grid point, divided by 1.2 kyr. The edge grid points inherit the nearest available rate. The code computes variability as the sample standard deviation in a centered 10-kyr window, using the available values at the boundaries.
 
-New builds use a timestamp run ID unless `--run-id=<id>` is supplied.
+The environmental analysis samples 5,000 complete sets of event ages from the archived model. The eight distributed tables report event ages, sedimentation rates by stage and event group, univariate and bivariate enrichment and incidence, full-cycle phase-shift tests and bounded-shift sensitivity. Incidence is expressed in recorded events per kyr. The age controls correspond to Supplementary Tables 2 and 3, event ages to Supplementary Table 5 and univariate enrichment to Supplementary Table 6. The age–depth curve corresponds to Supplementary Data 2, bivariate results to Supplementary Data 3, bounded shifts to Supplementary Data 4 and full-cycle shifts to Supplementary Data 5.
 
-## Files
+## Fit a new chronology
 
-```text
-code/            R scripts
-data/            inputs and source notes
-data/processed/  archived Bacon model
-results/         archived-model results
-```
+With the R package `rbacon` installed, run `Rscript code/run_all.R --build-bacon-model --model-source=rebuilt`. The new fit and its analysis outputs are written to a separate directory under `results/rebuilt_runs/`. MCMC draws can vary across software versions.
 
-See `DATA_DICTIONARY.md` for the input, output and supplementary-material
-mapping. Source data and units are documented in `data/source_notes.md`.
+## Licensing
+
+Custom code is distributed under the MIT License (see `LICENSE`). Author-generated processed data and analysis outputs are distributed under CC BY 4.0 (see `LICENSE-DATA.md`). The article identifies the GMGS datasets subject to access restrictions and the original sources of the published environmental records.

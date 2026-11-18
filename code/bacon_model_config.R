@@ -8,10 +8,11 @@ bacon_model_config <- list(
   acc.shape = 1,
   mem.mean = 0.95,
   mem.strength = 20,
-  ssize = 18000L,
+  ssize = 72000L,
   burnin = 500L,
-  seed = 20264621L,
-  normal = FALSE,
+  seed = 20264622L,
+  normal = TRUE,
+  cc2 = "Marine20",
   archived_relative_path = file.path("data", "processed", "bacon_model.rds"),
   rebuilt_relative_path = file.path(
     "bacon_model_build", "ZJ05_formal_chronology", "bacon_model.rds"
@@ -339,7 +340,7 @@ assert_bacon_model_configuration <- function(model) {
     as.integer(dim(model$output)),
     c(bacon_model_config$ssize, bacon_model_config$output_columns)
   )) {
-    stop("The selected Bacon model output matrix must be 18,000 x 385.")
+    stop("The selected Bacon model output matrix must be 72,000 x 385.")
   }
   if (!identical(
     as.integer(dim(model$ranges)),

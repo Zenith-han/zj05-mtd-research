@@ -103,9 +103,21 @@ wide <- read_result_csv_required(file.path(
 ))
 events <- event_table()
 event_ids <- events$event_id
-if (!identical(as.integer(wide$iteration), seq_len(nrow(wide))) ||
-    nrow(wide) != nrow(lsr_draws) || !all(event_ids %in% names(wide))) {
-  stop("Event-age posterior rows do not align with the retained Bacon curves.")
+expected_columns <- c("iteration", event_ids)
+if (!identical(names(wide), expected_columns)) {
+  stop(
+    "Event-age posterior columns must be exactly: ",
+    paste(expected_columns, collapse = ", ")
+  )
+}
+if (nrow(wide) != nrow(lsr_draws) ||
+    !identical(as.integer(wide$iteration), seq_len(nrow(lsr_draws)))) {
+  stop(
+    "Event-age posterior iterations do not align with the retained Bacon curves."
+  )
+}
+if (any(!is.finite(as.matrix(wide[, event_ids, drop = FALSE])))) {
+  stop("Event-age posterior draws contain missing or non-finite values.")
 }
 event_age_draws <- as.matrix(wide[, event_ids, drop = FALSE])
 linked_event_rates <- link_same_row_event_rates(

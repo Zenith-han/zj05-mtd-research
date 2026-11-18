@@ -1,5 +1,5 @@
 prepare_bacon_controls <- function(controls, expected_rows = 31L) {
-  required_cols <- c("LabID", "age", "error", "depth", "cc")
+  required_cols <- c("LabID", "age", "error", "depth", "cc", "delta.R", "delta.STD")
 
   if (!is.data.frame(controls)) {
     stop("Bacon controls must be supplied as a data frame.")
@@ -24,7 +24,7 @@ prepare_bacon_controls <- function(controls, expected_rows = 31L) {
     stop("LabID values must be unique.")
   }
 
-  numeric_cols <- c("age", "error", "depth", "cc")
+  numeric_cols <- c("age", "error", "depth", "cc", "delta.R", "delta.STD")
   non_numeric <- numeric_cols[!vapply(controls[numeric_cols], is.numeric, logical(1))]
   if (length(non_numeric) > 0) {
     stop("These Bacon control fields must be numeric: ", paste(non_numeric, collapse = ", "))

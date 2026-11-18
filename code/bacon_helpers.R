@@ -7,15 +7,6 @@ script_dir <- function() {
 }
 source(file.path(script_dir(), "00_paths.R"))
 
-require_bacon <- function() {
-  if (!requireNamespace("rbacon", quietly = TRUE)) {
-    stop("The rbacon package is required.")
-  }
-  version <- as.character(utils::packageVersion("rbacon"))
-  if (version != "3.5.2") stop("Expected rbacon 3.5.2; found ", version)
-  invisible(version)
-}
-
 event_table <- function() {
   events <- read_csv_required(path("data", "mtd_events.csv"))
   required <- c("event_id", "original_top_mbsf", "original_base_mbsf", "event_free_depth_cm")
@@ -27,10 +18,23 @@ event_table <- function() {
 }
 
 posterior_at_depths <- function(set, depths) {
+  age_curves_ka <- bacon_posterior_age_curves_ka(set)
   out <- vapply(
     depths,
-    function(d) rbacon::Bacon.Age.d(d, set = set),
-    numeric(nrow(set$output))
+    function(d) vapply(
+      seq_len(nrow(age_curves_ka)),
+      function(i) {
+        stats::approx(
+          x = set$elbows,
+          y = age_curves_ka[i, ],
+          xout = d,
+          rule = 2,
+          ties = "ordered"
+        )$y
+      },
+      numeric(1)
+    ) * 1000,
+    numeric(nrow(age_curves_ka))
   )
   if (is.null(dim(out))) out <- matrix(out, ncol = 1)
   out

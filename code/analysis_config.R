@@ -7,7 +7,7 @@ if (!exists("bacon_model_config", inherits = TRUE)) {
 
 analysis_config <- list(
   analysis_start_ka = 0,
-  analysis_end_ka = 236,
+  analysis_end_ka = 237,
   step_ka = 0.2,
   variability_half_window_ka = 5,
   variability_half_window_points = 25L,
@@ -28,7 +28,7 @@ stage_sedimentation_intervals <- data.frame(
   stringsAsFactors = FALSE
 )
 
-sedimentation_rate_10ka_edges_ka <- seq(0, 240, by = 10)
+sedimentation_rate_10ka_edges_ka <- seq(0, 230, by = 10)
 
 mtd_sedimentation_rate_groups <- list(
   `MTD1-MTD3` = paste0("MTD", 1:3),
@@ -46,9 +46,9 @@ analysis_grid_ka <- with(
   seq(analysis_start_ka, analysis_end_ka, by = step_ka)
 )
 
-if (length(analysis_grid_ka) != 1181L ||
+if (length(analysis_grid_ka) != 1186L ||
     tail(analysis_grid_ka, 1) != analysis_config$analysis_end_ka) {
-  stop("The configured 0-236 ka grid must contain exactly 1,181 points.")
+  stop("The configured 0-237 ka grid must contain exactly 1,186 points.")
 }
 
 if (analysis_config$variability_half_window_points * analysis_config$step_ka !=

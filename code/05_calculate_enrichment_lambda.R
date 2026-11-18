@@ -15,8 +15,8 @@ vars <- c(
 )
 env <- read_result_csv_required("categorized_timeseries.csv")
 env <- env[order(env$age_ka), ]
-if (nrow(env) != 1181L || min(env$age_ka) != 0 || max(env$age_ka) != 236) {
-  stop("Environmental grid is not the required 1,181-point 0-236 ka grid.")
+if (nrow(env) != 1186L || min(env$age_ka) != 0 || max(env$age_ka) != 237) {
+  stop("Environmental grid is not the required 1,186-point 0-237 ka grid.")
 }
 weights <- grid_exposure_weights(
   env$age_ka,
@@ -67,7 +67,7 @@ for (var in vars) {
   levels <- unique(env[[var]])
   levels <- levels[!is.na(levels)]
   tc_values <- vapply(levels, function(level) sum(weights[env[[var]] == level]), numeric(1))
-  if (abs(sum(tc_values) - total_time_ka) > 1e-10) stop("Univariate Tc does not sum to 236 ka: ", var)
+  if (abs(sum(tc_values) - total_time_ka) > 1e-10) stop("Univariate Tc does not sum to 237 ka: ", var)
   for (level in levels) {
     in_category <- env[[var]] == level
     tc <- sum(weights[in_category])
@@ -145,7 +145,7 @@ for (pair in pairs) {
     logical(1)
   )])
   if (abs(sum(pair_summary$Tc_ka) - total_time_ka) > 1e-10) {
-    stop("Bivariate Tc does not sum to 236 ka: ", var_a, " x ", var_b)
+    stop("Bivariate Tc does not sum to 237 ka: ", var_a, " x ", var_b)
   }
 }
 bivariate <- do.call(rbind, bivariate_rows)
